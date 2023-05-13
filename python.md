@@ -10,7 +10,10 @@ TBD
 
 ## Major Concepts
 - OOP
-- List comprehension
+- List comprehension 
+```
+new_list = [new_item for item in list if test]
+```
 
 ## Experience
 Robot Test Framework - test automation using Selenium
