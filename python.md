@@ -9,6 +9,7 @@
 TBD
 
 ## Major Concepts
+- Functions (*args, **kwargs)
 - OOP
 - List comprehension 
 ```
