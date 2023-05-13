@@ -1,10 +1,11 @@
 # DevSecOps
 
-https://roadmap.sh/devops
+[Interactive Roadmap](https://roadmap.sh/devops)
+
 https://maddevs.io/blog/devops-engineer-skills-matrix/
 
 ## Development
-- Python
+- [Python](python.md)
 - Java
 - Javascript/NodeJS
 
