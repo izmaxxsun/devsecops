@@ -18,3 +18,6 @@ https://maddevs.io/blog/devops-engineer-skills-matrix/
 ## Cloud 🟢
 - AWS Cloud Practitioner
 - AWS Solutions Architect - Associate
+
+## Soft Skills
+Time Management - Pomodoro Technique (work 25 min, 5 min break; repeat 4 times then 15-30 min break)
