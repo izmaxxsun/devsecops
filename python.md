@@ -23,6 +23,7 @@ new_dict = {new_key:new_value for item in list}
 # iterating on dictionary
 new_dict = {key:value for (key,value) in dict.items() if test}
 ```
+- Dynamic typing - can change type of variable (e.g. int to string) which is unique
 
 ## Experience
 Robot Test Framework - test automation using Selenium
