@@ -14,6 +14,10 @@ TBD
 ```
 new_list = [new_item for item in list if test]
 ```
+- Dictionary comprehension
+```
+new_dict = {new_key:new_value for item in list}
+```
 
 ## Experience
 Robot Test Framework - test automation using Selenium
