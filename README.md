@@ -9,5 +9,12 @@ https://maddevs.io/blog/devops-engineer-skills-matrix/
 - Java
 - Javascript/NodeJS
 
-# Infrastructure as Code 🟡
+## Infrastructure as Code 🟡
 - Ansible
+
+## Kubernetes 🟢
+- Certified Kubernetes Application Developer (CKAD)
+
+## Cloud 🟢
+- AWS Cloud Practitioner
+- AWS Solutions Architect - Associate
