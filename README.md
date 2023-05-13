@@ -4,10 +4,10 @@
 
 https://maddevs.io/blog/devops-engineer-skills-matrix/
 
-## Development
+## Development 🟢
 - [Python](python.md)
 - Java
 - Javascript/NodeJS
 
-# Infrastructure as Code
+# Infrastructure as Code 🟡
 - Ansible
