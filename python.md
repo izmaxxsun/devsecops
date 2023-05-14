@@ -24,7 +24,9 @@ new_dict = {new_key:new_value for item in list}
 new_dict = {key:value for (key,value) in dict.items() if test}
 ```
 - Dynamic typing - can change type of variable (e.g. int to string) which is unique
-- Exceptions - try, except, else, finally
+- Exceptions - try, except, else, finally. Use if "exceptional" case...if can protect in other ways (e.g. if/else) then do that
+- JSON - dump (write), load (read)
+- Pandas
 
 ## Experience
 Robot Test Framework - test automation using Selenium
