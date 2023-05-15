@@ -10,6 +10,7 @@ TBD
 
 ## Major Concepts
 - Functions (*args, **kwargs)
+- Scope and Global variables (avoid if possible, but if not ensure it is reachable)
 - OOP
 - List comprehension 
 ```
