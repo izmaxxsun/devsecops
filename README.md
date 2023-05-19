@@ -9,6 +9,10 @@ https://maddevs.io/blog/devops-engineer-skills-matrix/
 - Java
 - Javascript/NodeJS
 
+## Virtualization
+- Docker
+- Vagrant
+
 ## Infrastructure as Code 🟡
 - Ansible
 
