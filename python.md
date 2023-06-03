@@ -1,9 +1,9 @@
 # Python
+Useful as a general purpose language for automation, working with data.
 
-## Learning Goals
-- PCEP
-- PCAP
-- 100 Days of Code: The Complete Python Pro Bootcamp (Udemy) -- on day 32
+## Learning Resources
+- 100 Days of Code: The Complete Python Pro Bootcamp (Udemy) -- on day 34
+- PCEP and PCAP certs optional
 
 ## Major Concepts
 - Functions (*args, **kwargs)
@@ -33,10 +33,18 @@ new_dict = {key:value for (key,value) in dict.items() if test}
 - "with open" handles file close
 
 ### String Manipulation
-replace() --> need to store to new variable to see result
+- replace() --> need to store to new variable to see result
+- split() --> break into list by a separator
+- f strings for formatting text and variables
 
-## Experience
-Robot Test Framework - test automation using Selenium
+### User Interface
+- tkinter can build GUI
+- use pack() or grid() to layout
 
-## Example projects
-TBD
+### Requests
+response.raise_for_status() --> raises HTTP exception for you if unsuccessful status code
+response.json() --> get payload in JSON format
+GET request - pass arguments in as a dict
+```
+response = requests.get(URL, params=param_dict)
+```
