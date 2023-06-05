@@ -2,20 +2,33 @@
 Useful as a general purpose language for automation, working with data.
 
 ## Learning Resources
-- 100 Days of Code: The Complete Python Pro Bootcamp (Udemy) -- on day 34
+- 100 Days of Code: The Complete Python Pro Bootcamp (Udemy) -- on day 36
 - PCEP and PCAP certs optional
 
 ## Major Concepts
 - Functions (*args, **kwargs)
 - Scope and Global variables (avoid if possible, but if not ensure it is reachable)
-- Dynamic typing - can change type of variable (e.g. int to string) which is unique
 - Exceptions - try, except, else, finally. Use if "exceptional" case...if can protect in other ways (e.g. if/else) then do that
 - JSON - dump (write), load (read)
+
+### Typing
+- Dynamic typing - can change type of variable (e.g. int to string) which is unique
+- Type hints
+
+```
+def greeting(name:str) -> str:
+  return 'Hello' + name
+```
 
 ### OOP
 Classes, modules, init and super_init
 
 ### List/Dictionary
+- Looping
+```
+for item in list:
+  print(item)
+```
 - List comprehension 
 ```
 new_list = [new_item for item in list if test]
@@ -40,6 +53,7 @@ new_dict = {key:value for (key,value) in dict.items() if test}
 ### User Interface
 - tkinter can build GUI
 - use pack() or grid() to layout
+- use window.main_loop() to keep it running, use window.after() to perform action after delay
 
 ### Requests
 response.raise_for_status() --> raises HTTP exception for you if unsuccessful status code
@@ -48,3 +62,12 @@ GET request - pass arguments in as a dict
 ```
 response = requests.get(URL, params=param_dict)
 ```
+
+### Recurring Tasks
+cronjob
+PythonAnywhere schedule
+time.sleep()
+lambda function
+
+### Secrets
+os.environ.get() --> environment variables
