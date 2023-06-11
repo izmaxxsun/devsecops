@@ -11,8 +11,12 @@ https://maddevs.io/blog/devops-engineer-skills-matrix/
 - Angular
 
 ## Virtualization
-- Docker
+- [Docker](docker.md) 🟢
 - [Vagrant](vagrant.md)
+
+## Continuous Integration and Delivery (CI/CD)
+- GitLab 🟡
+- Jenkins
 
 ## Infrastructure as Code 🟡
 - Ansible
