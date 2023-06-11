@@ -56,12 +56,13 @@ new_dict = {key:value for (key,value) in dict.items() if test}
 - use window.main_loop() to keep it running, use window.after() to perform action after delay
 
 ### Requests
-response.raise_for_status() --> raises HTTP exception for you if unsuccessful status code
-response.json() --> get payload in JSON format
-GET request - pass arguments in as a dict
+- ⭐ response.raise_for_status() --> raises HTTP exception for you if unsuccessful status code
+- response.json() --> get payload in JSON format
+- GET request - pass arguments in as a dict
 ```
 response = requests.get(URL, params=param_dict)
 ```
+- for authentication, use secrets in header (i.e. pass in headers dict)
 
 ### Recurring Tasks
 cronjob
