@@ -4,6 +4,9 @@
 
 https://maddevs.io/blog/devops-engineer-skills-matrix/
 
+## Operating Systems
+- [Linux systems administration](linux.md)
+
 ## Development 🟢
 - [Python](python.md)
 - Java
