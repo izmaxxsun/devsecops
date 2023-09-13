@@ -26,6 +26,7 @@ https://maddevs.io/blog/devops-engineer-skills-matrix/
 
 ## Kubernetes 🟢
 - Certified Kubernetes Application Developer (CKAD) ✔️
+- [Helm](helm.md)
 
 ## Cloud 🟢
 - AWS Cloud Practitioner ✔️
