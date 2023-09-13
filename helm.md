@@ -10,3 +10,7 @@ helm repo update  # good practice to update Helm repo
 ## Installing a chart
 helm install <release_name_you_decide> <repo_name>/<chart_name>
 
+## Other Commands
+helm repo list -- show currently added repos
+helm list -- show current installed releases
+
