@@ -5,7 +5,7 @@
 https://maddevs.io/blog/devops-engineer-skills-matrix/
 
 ## Operating Systems
-- [Linux systems administration](linux.md)
+- [Linux systems administration](linux.md) - EX200
 
 ## Development 🟢
 - [Python](python.md)
