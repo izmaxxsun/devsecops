@@ -10,6 +10,12 @@ Source: https://www.redhat.com/en/services/training/ex200-red-hat-certified-syst
 ## Understand and use essential tools
 - Access a shell prompt and issue commands with correct syntax
 - Use input-output redirection (>, >>, |, 2>, etc.)
+```
+> - overwrites
+>> - appends
+| - pipes data from one command to the next
+2> - writes STDERR to output
+```
 - Use grep and regular expressions to analyze text
 - Access remote systems using SSH
 - Log in and switch users in multiuser targets
