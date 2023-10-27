@@ -172,4 +172,8 @@ systemctl start slapd
 systemctl enable slapd
 /etc/openldap/slapd.d #config file
 ```
-
+- Networking
+```
+# Maps journey of packet from source to destination
+traceroute
+```
