@@ -18,6 +18,11 @@ Source: https://www.redhat.com/en/services/training/ex200-red-hat-certified-syst
 ```
 - Use grep and regular expressions to analyze text
 - Access remote systems using SSH
+```
+# Look at SSH config, suggest changing port and PermitRootLogin = no
+cd /etc/ssh
+more sshd_config
+```
 - Log in and switch users in multiuser targets
 - Archive, compress, unpack, and uncompress files using tar, star, gzip, and bzip2
 - Create and edit text files
@@ -63,9 +68,26 @@ Source: https://www.redhat.com/en/services/training/ex200-red-hat-certified-syst
 ## Deploy, configure, and maintain systems
 - Schedule tasks using at and cron
 - Start and stop services and configure services to start automatically at boot
+```
+# Show active or inactive services
+systemctl -a
+
+# Check listening ports associated to services
+netstat -tunlp 
+```
 - Configure systems to boot into a specific target automatically
 - Configure time service clients
 - Install and update software packages from Red Hat Network, a remote repository, or from the local file system
+```
+# List packages
+rpm -qa
+
+# Remove package
+rpm -e <package>
+
+# Yum package manager
+yum install <package_name>
+```
 - Modify the system bootloader
 
 ## Manage basic networking
@@ -76,16 +98,55 @@ Source: https://www.redhat.com/en/services/training/ex200-red-hat-certified-syst
 
 ## Manage users and groups
 - Create, delete, and modify local user accounts
+```
+# View user accounts
+cat /etc/passwd
+```
 - Change passwords and adjust password aging for local user accounts
+```
+# Shows password policy for user
+chage -l <username>
+
+# Shadow file shows password policy values maded thru chage command
+cat /etc/shadow
+
+# Has default default settings for password aging
+cat /etc/login.defs
+
+# Has many parameters for authentication
+cat /etc/pam.d/system-auth
+```
 - Create, delete, and modify local groups and group memberships
 - Configure superuser access
 
 ## Manage security
 - Configure firewall settings using firewall-cmd/firewalld
+```
+# GUI version
+firewall-config
+cat /etc/firewalld/firewalld.conf
+
+# CLI
+firewall-cmd --help
+
+# Older version
+iptables --help
+```
 - Manage default file permissions
 - Configure key-based authentication for SSH
 - Set enforcing and permissive modes for SELinux
+```
+# Check status of SELinux
+sestatus
+
+# To disable SELinux, change to SELINUX=disabled
+vi /etc/sysconfig/sysconfig
+```
 - List and identify SELinux file and process context
+```
+# View file info
+stat <filename>
+```
 - Restore default file contexts
 - Manage SELinux port labels
 - Use boolean settings to modify system SELinux settings
@@ -102,3 +163,13 @@ Source: https://www.redhat.com/en/services/training/ex200-red-hat-certified-syst
 - Attach persistent storage to a container
 
 As with all Red Hat performance-based exams, configurations must persist after reboot without intervention.
+
+## Other
+- OpenLDAP installation
+```
+# OpenLDAP service is slapd
+systemctl start slapd
+systemctl enable slapd
+/etc/openldap/slapd.d #config file
+```
+
