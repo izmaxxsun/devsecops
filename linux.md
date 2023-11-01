@@ -134,6 +134,28 @@ iptables --help
 ```
 - Manage default file permissions
 - Configure key-based authentication for SSH
+```
+# shell provides interface to run utilities to interact with kernel
+# to secure:
+# - set idle timeout
+# edit /etc/ssh/sshd_config
+ClientAliveInterval 600
+# - disable root login
+PermitRootLogin no
+# - disable empty passwords
+PermitEmptyPasswords no
+# - limit users' SSH access
+AllowUsers user1 user2
+#
+# Use a different port
+Port 22 <-- change this port number
+#
+# Accessing without password (i.e. SSH-keys)
+# keys are generated at user level
+# - copy over keys from client to server
+# step 1 - ssh-kegen
+# step 2 - ssh-copy-id <user>@<server>
+```
 - Set enforcing and permissive modes for SELinux
 ```
 # Check status of SELinux
