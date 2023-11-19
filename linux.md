@@ -96,11 +96,29 @@ exportfs -rv
 # Show active or inactive services
 systemctl -a
 
+# Start and stop
+systemctl start <service>
+systemctl stop <service>
+
+# Automatically start or stop with each boot
+systemctl enable <service>
+systemctl disable <service
+
+# View status of service
+systemctl status <service>
+
 # Check listening ports associated to services
 netstat -tunlp 
 ```
 - Configure systems to boot into a specific target automatically
 - Configure time service clients
+```
+# Use network time protocol with chronyd
+vi /etc/chrony.conf
+systemctl restart chronyd
+chronyc sources -c
+timedatectl set-ntp true
+```
 - Install and update software packages from Red Hat Network, a remote repository, or from the local file system
 ```
 # List packages
@@ -226,4 +244,13 @@ systemctl enable slapd
 ```
 # Maps journey of packet from source to destination
 traceroute
+```
+- Tuned
+```
+# For system performance tuning
+# Check which profile is active
+tuned-adm active
+
+# Check what is recommended
+tuned-adm recommend
 ```
