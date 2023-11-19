@@ -26,7 +26,24 @@ more sshd_config
 - Log in and switch users in multiuser targets
 - Archive, compress, unpack, and uncompress files using tar, star, gzip, and bzip2
 - Create and edit text files
+```
+# touch or vi
+```
 - Create, delete, copy, and move files and directories
+```
+# create
+touch newfile.txt  # creates new empty file
+vi newfile.txt # create new file for editing
+
+# delete
+rm -rf  # removes recursively
+
+# copy
+cp <source> <dest>
+
+# move
+mv <source> <dest>
+```
 - Create hard and soft links
 - List, set, and change standard ugo/rwx permissions
 - Locate, read, and use system documentation including man, info, and files in /usr/share/doc
@@ -91,6 +108,10 @@ rpm -qa
 
 # Remove package
 rpm -e <package>
+
+# Local repo
+# add file to /etc/yum.repos.d
+# for each entry add: name, baseurl, gpgcheck (0), enabled (1)
 
 # Yum package manager
 yum install <package_name>
