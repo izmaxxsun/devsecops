@@ -163,6 +163,15 @@ cat /etc/login.defs
 cat /etc/pam.d/system-auth
 ```
 - Create, delete, and modify local groups and group memberships
+```
+# Create group
+groupadd <new_group>
+cat /etc/group
+
+# Add user and assign group
+useradd <username> -G <new_group>
+cat /etc/passwd
+```
 - Configure superuser access
 
 ## Manage security
