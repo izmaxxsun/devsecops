@@ -46,6 +46,14 @@ mv <source> <dest>
 ```
 - Create hard and soft links
 - List, set, and change standard ugo/rwx permissions
+```
+# List files with ls
+ls -al
+
+# Change permissions for user (u), group (g), or other (o) --> using +/- with r, w, or x
+chmod u+r
+```
+
 - Locate, read, and use system documentation including man, info, and files in /usr/share/doc
 
 ## Create simple shell scripts
