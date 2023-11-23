@@ -25,6 +25,10 @@ more sshd_config
 ```
 - Log in and switch users in multiuser targets
 - Archive, compress, unpack, and uncompress files using tar, star, gzip, and bzip2
+```
+# Uncompress with tar
+tar -xvf <archive_file>
+```
 - Create and edit text files
 ```
 # touch or vi
