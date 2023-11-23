@@ -17,6 +17,14 @@ Source: https://www.redhat.com/en/services/training/ex200-red-hat-certified-syst
 2> - writes STDERR to output
 ```
 - Use grep and regular expressions to analyze text
+```
+# Every line that contains text, ignoring case
+grep -i <pattern> <file_or_text>
+
+# Every line that does NOT contain text
+grep -v <pattern> <file_or_text>
+```
+
 - Access remote systems using SSH
 ```
 # Look at SSH config, suggest changing port and PermitRootLogin = no
@@ -24,6 +32,14 @@ cd /etc/ssh
 more sshd_config
 ```
 - Log in and switch users in multiuser targets
+```
+# Change to root
+su -
+
+# Switch to another user with their customizations
+su - <other_user>
+```
+
 - Archive, compress, unpack, and uncompress files using tar, star, gzip, and bzip2
 ```
 # Uncompress with tar
@@ -99,6 +115,17 @@ exportfs -rv
 - Configure autofs
 - Extend existing logical volumes
 - Create and configure set-GID directories for collaboration
+```
+# change owner
+chown <new_owner> <file_or_directory>
+
+# change group
+chgrp <new_group> <file_or_directory>
+
+# share files with set-gid, this sets group ownership to the parent directory's group
+chmod g+s <file_or_dir>
+
+```
 - Diagnose and correct file permission problems
 
 ## Deploy, configure, and maintain systems
@@ -183,6 +210,9 @@ cat /etc/group
 # Add user and assign group
 useradd <username> -G <new_group>
 cat /etc/passwd
+
+# Change group for a user
+usermod -a -G <group> <user>
 ```
 - Configure superuser access
 
