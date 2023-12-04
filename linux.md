@@ -65,6 +65,13 @@ cp <source> <dest>
 mv <source> <dest>
 ```
 - Create hard and soft links
+```
+# create hard link
+ln <path_to_file>
+
+# create symbolic link
+ln -s <path_to_file>
+```
 - List, set, and change standard ugo/rwx permissions
 ```
 # List files with ls
