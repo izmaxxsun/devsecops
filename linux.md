@@ -90,9 +90,35 @@ chmod u+r
 ```
 
 - Locate, read, and use system documentation including man, info, and files in /usr/share/doc
+```
+man <command>
+info <command>
+```
 
 ## Create simple shell scripts
 - Conditionally execute code (use of: if, test, [], etc.)
+```
+# Make sure to leave spaces around the square brackets for it to evaluate
+#!/bin/bash
+
+if [ "$(uname)" == "Linux" ]
+then 
+    echo "OK"
+else 
+    echo "nah"
+fi
+```
+```
+#!/bin/bash
+
+if test "$(uname)" == "Linux"
+then 
+    echo "OK"
+else 
+    echo "nah"
+fi
+```
+
 - Use Looping constructs (for, etc.) to process file, command line input
 - Process script inputs ($1, $2, etc.)
 - Processing output of shell commands within a script
