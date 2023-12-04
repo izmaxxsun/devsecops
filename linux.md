@@ -37,6 +37,7 @@ ssh <user_name>@<remote_host>
 # public key auth
 ssh-keygen -t rsa
 ssh-copy-id <user_name>@<remote_host>
+
 ```
 - Log in and switch users in multiuser targets
 ```
