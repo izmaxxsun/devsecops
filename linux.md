@@ -30,6 +30,13 @@ grep -v <pattern> <file_or_text>
 # Look at SSH config, suggest changing port and PermitRootLogin = no
 cd /etc/ssh
 more sshd_config
+
+# remote with basic auth
+ssh <user_name>@<remote_host>
+
+# public key auth
+ssh-keygen -t rsa
+ssh-copy-id <user_name>@<remote_host>
 ```
 - Log in and switch users in multiuser targets
 ```
