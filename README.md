@@ -1,8 +1,9 @@
 # DevSecOps
+## Goals
+Complete Linux fundamentals (EX200) and then move on to learning Ansible.
 
-[Interactive Roadmap](https://roadmap.sh/devops)
-
-https://maddevs.io/blog/devops-engineer-skills-matrix/
+- [Interactive Roadmap](https://roadmap.sh/devops)
+- https://maddevs.io/blog/devops-engineer-skills-matrix/
 
 ## Operating Systems
 - [Linux systems administration](linux.md) - EX200
