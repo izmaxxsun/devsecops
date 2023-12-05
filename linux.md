@@ -118,6 +118,16 @@ else
     echo "nah"
 fi
 ```
+```
+#!/bin/bash
+
+if [ -e ~/file.txt ]
+then 
+    echo "File exists"
+else 
+    echo "File does not exist"
+fi
+```
 
 - Use Looping constructs (for, etc.) to process file, command line input
 - Process script inputs ($1, $2, etc.)
