@@ -147,6 +147,15 @@ do
    ((COUNTER--))
 done
 ```
+```
+# FOR LOOP - uses subshell to feed in file
+for i in $(cat /tmp/testusers.csv)
+do
+   echo "$i"
+done
+
+
+```
 - Process script inputs ($1, $2, etc.)
 - Processing output of shell commands within a script
 
