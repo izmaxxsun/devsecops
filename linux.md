@@ -130,6 +130,23 @@ fi
 ```
 
 - Use Looping constructs (for, etc.) to process file, command line input
+```
+## WHILE LOOP
+#!/usr/bin/bash
+COUNTER=1
+while [ "$COUNTER" -lt 10 ]
+do
+    echo "The counter is $COUNTER."
+    ((COUNTER++))
+done
+
+## UNTIL
+until [ $COUNTER -eq 0 ]
+do
+   echo "The counter is $COUNTER."
+   ((COUNTER--))
+done
+```
 - Process script inputs ($1, $2, etc.)
 - Processing output of shell commands within a script
 
