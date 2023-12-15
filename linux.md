@@ -149,6 +149,10 @@ done
 ```
 ```
 # FOR LOOP - uses subshell to feed in file
+## IFS - is the internal file separator
+OLDIFS=$IFS
+IFS=$'\n'
+
 for i in $(cat /tmp/testusers.csv)
 do
    echo "$i"
