@@ -239,9 +239,45 @@ systemctl isolate <target_name>
 ```
 
 - Interrupt the boot process in order to gain access to a system
+```
+# Press 'e' from the GRUB menu
+# add rd.break parameter
+# this puts system in emergency mode and you can do things like recover password
+chroot /sysroot
+passwd root
+# for SELinux relabeling if you've made system changes
+ctouch /.autorelabel
+```
+
 - Identify CPU/memory intensive processes and kill processes
+```
+# Instantaneous view of system, also has memory, cpu
+top
+
+# Process details
+ps -edf
+
+# Kill process
+## Get PID from top or ps
+kill [OPTION] PID
+
+## List of options
+kill -l
+kill -9 # forceful
+kill -15 # graceful
+```
+
 - Adjust process scheduling
 - Manage tuning profiles
+```
+# For system performance tuning
+# Check which profile is active
+tuned-adm active
+
+# Check what is recommended
+tuned-adm recommend
+```
+
 - Locate and interpret system log files and journals
 - Preserve system journals
 - Start, stop, and check the status of network services
@@ -449,12 +485,4 @@ systemctl enable slapd
 # Maps journey of packet from source to destination
 traceroute
 ```
-- Tuned
-```
-# For system performance tuning
-# Check which profile is active
-tuned-adm active
 
-# Check what is recommended
-tuned-adm recommend
-```
