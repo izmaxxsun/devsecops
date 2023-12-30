@@ -161,11 +161,83 @@ done
 
 ```
 - Process script inputs ($1, $2, etc.)
-- Processing output of shell commands within a script
+```
+Shell scripts have access to some "magic" variables from the environment:
 
+$0 - The name of the script
+$1 - The first argument sent to the script
+$2 - The second argument sent to the script
+$3 - The third argument... and so forth
+$# - The number of arguments provided
+$@ - A list of all arguments provided
+#!/bin/bash
+
+if [ $# -eq 0 ];
+then
+  echo "$0: Missing arguments"
+  exit 1
+elif [ $# -gt 2 ];
+then
+  echo "$0: Too many arguments: $@"
+  exit 1
+else
+  echo "We got some argument(s)"
+  echo "==========================="
+  echo "Number of arguments.: $#"
+  echo "List of arguments...: $@"
+  echo "Arg #1..............: $1"
+  echo "Arg #2..............: $2"
+  echo "==========================="
+fi
+
+echo "And then we do something with $1 $2"
+```
+```
+# Looping through arguments
+#!/bin/bash
+
+echo "We received $# argument(s)"
+
+for i in "$@"
+do
+  echo "Arg...: $i"
+done
+```
+- Processing output of shell commands within a script
+```
+# Use command substitution with parentheses. Can store as variable.
+SERVERNAME=$(hostname)
+echo "Running command @ $SERVERNAME...."
+```
 ## Operate running systems
 - Boot, reboot, and shut down a system normally
+```
+# Reboot
+sudo shutdown -r now
+sudo systemctl reboot
+
+# Shutdown
+sudo shutdown --halt +5
+```
 - Boot systems into different targets manually
+```
+# Docs
+man runlevel
+
+# List targets
+systemctl list-units --type target
+
+# Current target
+systemctl get-default
+
+# Change default target
+systemctl set-default <target_name>
+reboot
+
+# Change manually with isolate
+systemctl isolate <target_name>
+```
+
 - Interrupt the boot process in order to gain access to a system
 - Identify CPU/memory intensive processes and kill processes
 - Adjust process scheduling
