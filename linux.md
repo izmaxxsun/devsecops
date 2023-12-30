@@ -268,6 +268,17 @@ kill -15 # graceful
 ```
 
 - Adjust process scheduling
+```
+# ctrl-z to stop process
+bg # bring process to background
+fg # bring process to foreground
+jobs # look at jobs
+nohup <process> & # run process even after exit
+
+# Nice priority goes from -20 to 19 with lowest being high priority
+nice -n <priority_value> <process>
+```
+  
 - Manage tuning profiles
 ```
 # For system performance tuning
