@@ -287,9 +287,20 @@ tuned-adm active
 
 # Check what is recommended
 tuned-adm recommend
+
+# List profiles
+tunded-adm list
+
+# Change profile
+tuned-adm profile <profile>
 ```
 
 - Locate and interpret system log files and journals
+```
+# By default located in /var/log based on config in /etc/rsyslog.conf
+
+```
+
 - Preserve system journals
 - Start, stop, and check the status of network services
 - Securely transfer files between systems
