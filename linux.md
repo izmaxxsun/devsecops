@@ -298,15 +298,81 @@ tuned-adm profile <profile>
 - Locate and interpret system log files and journals
 ```
 # By default located in /var/log based on config in /etc/rsyslog.conf
+# ...can cat or tail these logs
+# /var/log/messages is primary place to look
 
+# Alternative is to use journalctl
+journalctl -n <num_of_messages>
+journalctl -p <priority_eg_crit>
+journalctl -u <service_name>
+```
+- Preserve system journals
+```
+# Edit config
+vim /etc/systemd/journal.conf
+
+# Set storage to persistent
+[Journal]
+Storage=persistent
+
+# Restart service
+systemctl restart systemd-journald
+```
+- Start, stop, and check the status of network services
+```
+systemctl start <service>
+systemctl list-units --type=service
+systemctl stop <service>
+systemctl status <service>
+systemctl enable <service> # start at boot
+systemctl disable <service>
+systemctl restart <service
 ```
 
-- Preserve system journals
-- Start, stop, and check the status of network services
 - Securely transfer files between systems
+```
+# Secure copy uses SSH to transfer file, use same credentials
+scp file1 user@192.268.1.3:/home/user
+
+# If private key at nonstandard location or port different
+scp -i /home/keys/id_rsa -P 2390 file1 user@192.268.1.3:/home/user
+
+# SFTP is another option
+sftp user@192.168.1.3
+# then use get or put to download/upload file
+
+# Rsync can be used to sync files on same computer or from remote system efficiently
+# faster than ftp and scp
+rsync [options] [source] [destination]
+```
 
 ## Configure local storage
 - List, create, delete partitions on MBR and GPT disks
+```
+# List partitions
+fdisk -l
+
+# Create partition
+fdisk <name_of_disk>  # e.g. /dev/sdb
+# use "n" to create new partition and follow prompts
+# write it to disk with "w"
+# format file system
+mkfs.xfs /dev/sdb1
+# mount
+mkdir /data
+mount /dev/sdb1/ /data
+# check
+df -h
+# make persistent
+vim /etc/fstab
+# use partprobe to make sure system registers changes
+
+# Delete partition
+Same process as creating but select "d" to delete
+Then use partprobe to register changes
+
+# GPT disks are similar, use gdisk instead of fdisk command
+```
 - Create and remove physical volumes
 - Assign physical volumes to volume groups
 - Create and delete logical volumes
