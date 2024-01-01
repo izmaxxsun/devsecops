@@ -417,12 +417,64 @@ mount <logical_voume> <mount_path>
 ```
 - Configure systems to mount file systems at boot by universally unique ID (UUID) or label
 ```
-TBD
+# Get the UUID
+blkid
+
+# Update /etc/fstab
+UIUID=....    <mount_path>    <file_system>    defaults    0    0
+
+# For label, set the label
+e2label <device> label
+
+# Then update /etc/fstab
+LABEL=....
 ```
 - Add new partitions and logical volumes, and swap to a system non-destructively
 ```
-TBD
 # Udemy lecture 191, 192
+# Extend LVM by adding disk
+## Check current partitions
+df -h
+
+## check PV
+pvdisplay
+
+## Check VG
+vgdisplay
+
+## Create physical volume
+pvcreate /dev/sdc1
+
+## Extend the Volume Group
+vgextend <vg_name> <pv_to_extend_with>
+
+## Extend the Logical Volume
+lvextend --size +1GB <lv_to_extend> # find lv from df -h
+
+# Swap
+## Used when RAM is full, has slower access time than physical memory
+dd
+mkswap
+swapon
+swapoff
+
+# Look at memory
+free -m
+
+# Create swap placeholder
+dd if=/dev/zero of=/newswap bs=1M count=1024
+
+# Update file permissions
+chmod 600 <file>
+
+# Make swap
+mkswap <name_of_swap>
+
+# Enable swap
+swapon <name_of_swap>
+
+# Add to fstab
+<swap_path>    swap    swap    defaults 0    0
 ```
 
 ## Create and configure file systems
