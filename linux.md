@@ -351,6 +351,7 @@ rsync [options] [source] [destination]
 ```
 # List partitions
 fdisk -l
+lsblk -a
 
 # Create partition
 fdisk <name_of_disk>  # e.g. /dev/sdb
@@ -374,8 +375,38 @@ Then use partprobe to register changes
 # GPT disks are similar, use gdisk instead of fdisk command
 ```
 - Create and remove physical volumes
+```
+# Udemy lecture 188, 190, 191
+# First need to add a disk, such as with VirtualBox > Settings > Storage
+# Create new partition and change to type "t" of LVM which is hex "8e"
+pvcreate <partition_name>
+
+# Remove physical volume
+pvremove <partition_name>
+
+# List physical volumes
+pvs
+```
 - Assign physical volumes to volume groups
+```
+# Udemy lecture 190
+# Create volume group
+vgcreate <volume_group_name> <physical_volume_name>
+
+# Display volume group info
+vgdisplay <volume_group_name>
+```
 - Create and delete logical volumes
+```
+# Udemy lecture 190
+lvcreate -n <logical_volume_name> --size <size> <volume_group>
+
+# Display logical volumes
+lvs
+
+# Delete logical volume
+lvremove <volume_group>/<logical_volume>
+```
 - Configure systems to mount file systems at boot by universally unique ID (UUID) or label
 - Add new partitions and logical volumes, and swap to a system non-destructively
 
