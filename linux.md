@@ -377,6 +377,7 @@ Then use partprobe to register changes
 - Create and remove physical volumes
 ```
 # Udemy lecture 188, 190, 191
+# NOTE: can use "lvm" to view all LVM commands
 # First need to add a disk, such as with VirtualBox > Settings > Storage
 # Create new partition and change to type "t" of LVM which is hex "8e"
 pvcreate <partition_name>
@@ -406,9 +407,23 @@ lvs
 
 # Delete logical volume
 lvremove <volume_group>/<logical_volume>
+
+# Assign filesystem
+mkfs.xfs /dev/<volume_group>/<logical_volume> # can look up this path using lvdisplay
+
+# Mount volume
+mkdir /<dir_name>
+mount <logical_voume> <mount_path>
 ```
 - Configure systems to mount file systems at boot by universally unique ID (UUID) or label
+```
+TBD
+```
 - Add new partitions and logical volumes, and swap to a system non-destructively
+```
+TBD
+# Udemy lecture 191, 192
+```
 
 ## Create and configure file systems
 - Create, mount, unmount, and use vfat, ext4, and xfs file systems
