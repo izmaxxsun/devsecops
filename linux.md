@@ -479,29 +479,82 @@ swapon <name_of_swap>
 
 ## Create and configure file systems
 - Create, mount, unmount, and use vfat, ext4, and xfs file systems
+```
+# Create filesystem
+mkfs.xfs <volume>
+mkfs.ext4 <volume>
+mkfs.vfat <volume>
+
+# Mount
+mount <volume> <mount_point>
+
+# Unmount
+umount <mount_point_or_device>
+```
 - Mount and unmount network file systems using NFS
 ```
+# Udemy lecture 197
 # Install packages and start services -- rpcbind, nfs-server, nfs-idmapd
 # Share files using /etc/export
 # ex. /myshare  *(rw,sync,no_root_squash)
 # Export the file system
 exportfs -rv
+
+# For client, nfs-utils and rpcbind
+# Mount the filesystem
+mount -t nfs -o options host:/remote/export /local/directory
 ```  
 - Configure autofs
+```
+# Used to mount and unmount filesystems (e.g. NFS) automatically, alternative to fstab
+# https://docs.oracle.com/en/learn/autofs_linux8/#create-mount-point
+
+## Install package
+yum install nfs-utils autofs
+
+## Create mount point
+sudo mkdir /nfs-mount
+
+## Edit Master Map file: /etc/auto.master
+echo "/nfs-mount  /etc/auto.mynfs  --timeout=180" | sudo tee /etc/auto.master.d/mynfs.autofs > /dev/null
+# This entry defines the mount point as /nfs-mount and the map file as auto.mynfs.
+
+## Create Map file
+echo "mynfs  -fstype=nfs,rw,soft,intr  <SERVER_IP_ADDRESS>:/nfs-share" | sudo tee /etc/auto.mynfs > /dev/null
+Where:
+- mynfs is a mount point.
+-fstype=nfs is the file system type,
+and rw,soft,intr are mount options.
+<SERVER_IP_ADDRESS> is the IP address of the server instance hosting the NFS server.
+:/nfs-share is the NFS share.
+
+## Start service
+sudo systemctl enable --now autofs
+```
+
 - Extend existing logical volumes
+```
+lvextend [options] [logical_volume]
+```
+  
 - Create and configure set-GID directories for collaboration
 ```
-# change owner
-chown <new_owner> <file_or_directory>
+# Put users in same group
+# usermod -a -G rocketengineers john
+# usermod -a -G rocketengineers sarah
 
-# change group
-chgrp <new_group> <file_or_directory>
+# Set group owner for folder
+chown -R :rocketengineers /student_projects/rocket_science
+
+# NOTE: use "stat" to look at access details
 
 # share files with set-gid, this sets group ownership to the parent directory's group
 chmod g+s <file_or_dir>
-
 ```
 - Diagnose and correct file permission problems
+```
+TBD
+```
 
 ## Deploy, configure, and maintain systems
 - Schedule tasks using at and cron
@@ -549,6 +602,9 @@ rpm -e <package>
 yum install <package_name>
 ```
 - Modify the system bootloader
+```
+TBD
+```
 
 ## Manage basic networking
 - Configure IPv4 and IPv6 addresses
