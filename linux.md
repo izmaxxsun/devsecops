@@ -558,6 +558,26 @@ TBD
 
 ## Deploy, configure, and maintain systems
 - Schedule tasks using at and cron
+```
+# Crontab file is system-wide and for each user
+$ ls -l /etc/crontab
+$ ls -l /etc/cron.d/
+
+# Check for scheduled jobs
+crontab -l
+
+# Edit crontab for user
+crontab -e
+
+# Crontab syntax -- minute, hour, day of month, month, day of week
+
+# "at" runs things once in the future
+## Show current jobs
+at -l
+
+## Run script
+at 15:52 -f ./myscript.sh
+```
 - Start and stop services and configure services to start automatically at boot
 ```
 # Show active or inactive services
