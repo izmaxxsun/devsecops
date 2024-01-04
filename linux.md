@@ -598,6 +598,13 @@ systemctl status <service>
 netstat -tunlp 
 ```
 - Configure systems to boot into a specific target automatically
+```
+# View targets
+systemctl list-units --type target
+
+# Set the default target
+systemctl set-default multi-user.target
+```
 - Configure time service clients
 ```
 # Use network time protocol with chronyd
@@ -623,7 +630,12 @@ yum install <package_name>
 ```
 - Modify the system bootloader
 ```
-TBD
+grub2-editenv list
+grub2-set-default 1 # sets the kernel to 2nd option
+
+# Modify config and then run make
+vi /etc/default/grub
+bur2-mkconfig -o /boot/grub2/grub.cfg
 ```
 
 ## Manage basic networking
