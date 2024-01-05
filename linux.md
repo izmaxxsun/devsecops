@@ -640,7 +640,33 @@ bur2-mkconfig -o /boot/grub2/grub.cfg
 
 ## Manage basic networking
 - Configure IPv4 and IPv6 addresses
+```
+# Udemy lecture 144
+
+# Look at IP info
+ip addr
+
+# Network Manager CLI
+nmcli connection show
+nmcli device status
+nmcli connection add
+nmcli connection modify
+```
 - Configure hostname resolution
+```
+# display hostname
+hostname
+
+# edit hostname
+vi /etc/hostname # hostname.test.local
+hostnamectl
+
+# DNS server
+cat /etc/resolv.conf
+
+# hosts file
+vi /etc/hosts
+```
 - Configure network services to start automatically at boot
 - Restrict network access using firewall-cmd/firewall
 
