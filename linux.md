@@ -719,6 +719,24 @@ firewall-cmd --help
 iptables --help
 ```
 - Manage default file permissions
+```
+# with umask
+# The first digit of the umask represents special permissions (sticky bit, ). The last three digits of the umask represent the
+# permissions that are removed from the user owner (u), group owner (g), and others (o) respectively.
+
+# for current session. to make permanent, update bashrc
+umask -S <level><operation><permission>
+
+# change value for root in /etc/login.defs
+
+# with acl, can keep user and group permissions the same but allow access to a file
+getfacl file-name
+setfacl -m u:username:symbolic_value file-name
+# setfacl -m u:andrew:rw- group-project
+# setfacl -m u:susan:--- group-project
+
+```
+  
 - Configure key-based authentication for SSH
 ```
 # shell provides interface to run utilities to interact with kernel
