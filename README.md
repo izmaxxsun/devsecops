@@ -23,7 +23,7 @@ Complete Linux fundamentals (EX200) and then move on to learning Ansible.
 - Jenkins
 
 ## Infrastructure as Code 🟡
-- Ansible
+- [Ansible](ansible.md)
 
 ## Kubernetes 🟢
 - Certified Kubernetes Application Developer (CKAD) ✔️
