@@ -774,16 +774,55 @@ vi /etc/sysconfig/sysconfig
 stat <filename>
 ```
 - Restore default file contexts
+```
+ls -Z
+restorecon -R /path
+```
 - Manage SELinux port labels
+```
+semanage port -l
+semanage port -a -t port_label -p tcp|udp PORTNUMBER
+semanage port -d -t gopher_port_t -p tcp 71
+```
 - Use boolean settings to modify system SELinux settings
+```
+sudo semanage boolean --list | head
+sudo semanage boolean --modify --on http_allow_homedirs
+```
 - Diagnose and address routine SELinux policy violations
+```
+dnf install setroubleshoot-server
+
+sealert -a /var/log/audit/audit.log
+ausearch -m <search terms>
+audit2why -a
+```
 
 ## Manage containers
+```
+# install podman
+dfn install podman
+```
+
 - Find and retrieve container images from a remote registry
+```
+podman search <image>
+podman pull <image_full_name>
+```
+
 - Inspect container images
 - Perform container management using commands such as podman and skopeo
 - Build a container from a Containerfile
+```
+
+
+```
+  
 - Perform basic container management such as running, starting, stopping, and listing running containers
+```
+# run container
+podman run <options> <image_name>
+```
 - Run a service inside a container
 - Configure a container to start automatically as a systemd service
 - Attach persistent storage to a container
