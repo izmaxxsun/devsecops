@@ -812,6 +812,15 @@ podman pull <image_full_name>
 
 - Inspect container images
 - Perform container management using commands such as podman and skopeo
+```
+podman logs <container_name_or_id>
+
+# look at processes in pod
+podman top <container_name_or_id>
+
+# remove container
+podman rm <container_name_or_id>
+```
 - Build a container from a Containerfile
 ```
 
@@ -822,6 +831,16 @@ podman pull <image_full_name>
 ```
 # run container
 podman run <options> <image_name>
+
+# stop container
+podman stop <container_name_or_id>
+
+# start container
+podman start <container_name_or_id>
+
+# list running containers
+podman ps
+podman ps -a # shows stopped containers
 ```
 - Run a service inside a container
 - Configure a container to start automatically as a systemd service
