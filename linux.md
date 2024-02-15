@@ -23,6 +23,34 @@ grep -i <pattern> <file_or_text>
 
 # Every line that does NOT contain text
 grep -v <pattern> <file_or_text>
+
+# matches Car, car, Cat
+grep "[Cc]a[RrTt]" <file_to_search>
+
+# matches over a range of characters
+grep "da[a-z]" <file_to_search>
+
+# match beginning of a line
+grep "^He" <file_to_search>
+ls -l | grep "^d"
+
+# inverted match -- doesn't match characters a through i
+grep "[d[^a-i]e" <file_to_search>
+
+# end of line  -- matches phrase at end of line
+grep "got$"
+
+# any one character -- this matches "stupid"
+grep "st..id" <file_to_search>
+
+# escape character, matches the word out with a full stop
+grep "out\.$" <file_to_search>
+
+# match 0 or more of the previous character, this would match 
+grep "hap*"
+
+# matches the any(.) zero or more times
+grep "hap.*ed" <file_to_search>
 ```
 
 - Access remote systems using SSH
