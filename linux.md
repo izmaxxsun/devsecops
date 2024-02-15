@@ -95,8 +95,55 @@ su - <other_user>
 
 - Archive, compress, unpack, and uncompress files using tar, star, gzip, and bzip2
 ```
+# gzip and bzip used to compress single file
+# compress with gzip
+gzip <filename>
+
+# extract with gzip
+gzip -d <filename.gz>
+
+# bzip compress
+bzip2 <file>
+
+# bzip extract
+bzip2 -d <file.bz2>
+
+# compress with tar -- compresses multiple files
+# compress, verbose
+tar cvf <name_of_tar> <file_to_compress>
+
+# compress with tar and gzip
+tar cvzf <compressed.tar.gz> <file_to_compress>
+
+# compress with tar and bzip
+tar cvjf <compressed.tar.bz2> <file_to_compress>
+
+# list contents of tar
+tar -tf <compressed.tar>
+
 # Uncompress with tar
 tar -xvf <archive_file>
+
+# Uncompress tar with gzip
+tar -xvzf <archive_file.tar.gz>
+
+# Uncompress  tar with bzip
+tar -xvjf <archive_file.tar.bz2>
+
+# star is used for SELINUX
+yum install star
+
+# compress with star
+star -c -f=file1.star <file_or_directory_to_compress>
+
+# extended attributes
+star -xattr -H=exustar -c -f=<example.star> <file_to_compress>
+
+# list files in start
+star -t -f=example.star
+
+# extract star
+star -x -f=example.star
 ```
 - Create and edit text files
 ```
