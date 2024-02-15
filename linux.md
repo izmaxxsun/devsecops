@@ -62,13 +62,30 @@ more sshd_config
 # remote with basic auth
 ssh <user_name>@<remote_host>
 
+# can tee the output
+ssh <user_name>@<remote_host> | tee ssh-output.log
+
 # public key auth
 ssh-keygen -t rsa
 ssh-copy-id <user_name>@<remote_host>
-
 ```
 - Log in and switch users in multiuser targets
 ```
+# 6 run levels
+# 0 - halt system
+# 1 - single user mode
+# 2 - multi user mode without networking
+# 3 - full multiuser mode (no GUI)
+# 4 - unused
+# 5 - x11 display (GUI)
+# 6 - reboot system
+
+# show current runlevel
+runlevel
+
+# switch level
+init <runlevel>
+
 # Change to root
 su -
 
