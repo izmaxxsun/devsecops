@@ -188,9 +188,15 @@ mv <source> <dest>
 - Create hard and soft links
 ```
 # create hard link
+# can only be in same filesystem
+# cannot link directories
+# same inode number and permissions of original
 ln <path_to_file>
 
 # create symbolic link
+# can cross between file systems, allows linking directories
+# has new inode number and file permissions
+# has only path of original file, not contents
 ln -s <path_to_file>
 ```
 - List, set, and change standard ugo/rwx permissions
