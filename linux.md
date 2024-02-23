@@ -148,18 +148,39 @@ star -x -f=example.star
 - Create and edit text files
 ```
 # touch or vi
+# go into command mode with ESC
+# "i" for insert mode
+# :wq # write file and quit
+# "x" to delete
+# "u" to undo
+# "dw" to delete word
+# "2dw" deletes 2 words
+# "dd" delete line
+# "r" to replace
+# "cw" change word
+# "/" to search, "n" to go to next result
 ```
 - Create, delete, copy, and move files and directories
 ```
-# create
+# create file
 touch newfile.txt  # creates new empty file
 vi newfile.txt # create new file for editing
 
-# delete
-rm -rf  # removes recursively
+# create directory
+mkdir <directory_name>
+mkdir -p <dir1>/<dir2>/<dir3> # to create directories that don't exist
 
-# copy
+# delete file
+rm <file>
+
+# delete folder
+rm -rf  # removes recursively with force
+
+# copy file
 cp <source> <dest>
+
+# copy directory
+cp -r <source> <dest>
 
 # move
 mv <source> <dest>
