@@ -352,9 +352,12 @@ echo "Running command @ $SERVERNAME...."
 # Reboot
 sudo shutdown -r now
 sudo systemctl reboot
+sudo reboot
+sudo init 6
 
 # Shutdown
 sudo shutdown --halt +5
+sudo init 0
 ```
 - Boot systems into different targets manually
 ```
@@ -378,12 +381,17 @@ systemctl isolate <target_name>
 - Interrupt the boot process in order to gain access to a system
 ```
 # Press 'e' from the GRUB menu
-# add rd.break parameter
-# this puts system in emergency mode and you can do things like recover password
+# add rd.break parameter enforcing=0
+# this puts system in emergency mode and you can do things like recover
+mount -o remountmrw /sysroot
 chroot /sysroot
 passwd root
 # for SELinux relabeling if you've made system changes
-ctouch /.autorelabel
+touch /.autorelabel
+mount -o remount,ro /
+restorecon /etc/shadow #restores context for SELinux
+setenforce 1
+getenforce
 ```
 
 - Identify CPU/memory intensive processes and kill processes
