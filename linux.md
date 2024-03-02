@@ -206,12 +206,30 @@ ls -al
 
 # Change permissions for user (u), group (g), or other (o) --> using +/- with r, w, or x
 chmod u+r
+chmod 755 # read = 4, write = 2, execute =1
+
+# change ownership
+chown user1:group1 file1
+chown --reference=<file_to_mimic> file1 # updates user/group based on another file
+
+# set user or group ID, gives higher permission for a script (runs as owner or group)
+sudo chmod u+s <file>
+sudo chmod g+s <file
 ```
 
 - Locate, read, and use system documentation including man, info, and files in /usr/share/doc
 ```
 man <command>
 info <command>
+whatis <command>
+whereis <command>
+
+# locate files
+locate <command>
+sudo updatedb # updates index to find files
+
+# info on rpm packages
+sudo rpm -ql systemd
 ```
 
 ## Create simple shell scripts
