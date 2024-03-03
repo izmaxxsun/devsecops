@@ -397,6 +397,7 @@ getenforce
 - Identify CPU/memory intensive processes and kill processes
 ```
 # Instantaneous view of system, also has memory, cpu
+# press shift+< or shift+> to sort
 top
 
 # Process details
@@ -404,16 +405,38 @@ ps -edf
 
 # Kill process
 ## Get PID from top or ps
+pidof <service>
+
+# kill using one of the options below
 kill [OPTION] PID
+pkill <service>
 
 ## List of options
-kill -l
+kill -l # all the options
 kill -9 # forceful
 kill -15 # graceful
+
+## NICE values for process
+## -20 is the least nice meaning it will take over
+## +20 will let other processes run ahead of it
+nice -n <nice_value> <process_to_run>
+
+# update nice for running process with RENICE
+renice +5 <pid>
 ```
 
 - Adjust process scheduling
 ```
+# Look at scheduling policies
+chrt -m # view schedule options and priority range
+chrt -p <pid> # view scheduling for process
+
+# Adjust schedule
+chrt -b -p 0 <pid>  # batch schedule
+chrt -f -p 50 <pid>  # FIFO schedule
+chrt -r -p 50 <pid>  # round robin
+chrt -o -p 0 <pid>  # other
+
 # ctrl-z to stop process
 bg # bring process to background
 fg # bring process to foreground
@@ -427,6 +450,8 @@ nice -n <priority_value> <process>
 - Manage tuning profiles
 ```
 # For system performance tuning
+dnf install tuned
+
 # Check which profile is active
 tuned-adm active
 
@@ -445,11 +470,26 @@ tuned-adm profile <profile>
 # By default located in /var/log based on config in /etc/rsyslog.conf
 # ...can cat or tail these logs
 # /var/log/messages is primary place to look
+# /var/log/secure captures security events like ssh logins
+# /var/log/boot.log shows issues during startup
+# /var/log/audit.log has SELINUX logs
+
+# analyze startup process
+systemd-analyze
+systemd-analyze blame
 
 # Alternative is to use journalctl
 journalctl -n <num_of_messages>
 journalctl -p <priority_eg_crit>
 journalctl -u <service_name>
+journalctl -b # logs since last boot
+journalctl --since=today
+journalctl --since=21:20
+
+# Storing journal after reboot
+mkdir /var/log/journal
+echo "SystemMaxUse=50M" >> /etc/systemd/journald.conf
+systemctl restart systemd-journald
 ```
 - Preserve system journals
 ```
@@ -471,13 +511,15 @@ systemctl stop <service>
 systemctl status <service>
 systemctl enable <service> # start at boot
 systemctl disable <service>
-systemctl restart <service
+systemctl mask <service> # prevents service from running
+systemctl restart <service>
 ```
 
 - Securely transfer files between systems
 ```
 # Secure copy uses SSH to transfer file, use same credentials
 scp file1 user@192.268.1.3:/home/user
+scp /etc/ssh/* user@<host>:/tmp # copies contents of directory to tmp folder
 
 # If private key at nonstandard location or port different
 scp -i /home/keys/id_rsa -P 2390 file1 user@192.268.1.3:/home/user
