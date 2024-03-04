@@ -536,9 +536,18 @@ rsync [options] [source] [destination]
 ## Configure local storage
 - List, create, delete partitions on MBR and GPT disks
 ```
+# list drives
+df -h
+
+# show unique IDs for disks
+blkid
+
 # List partitions
-fdisk -l
 lsblk -a
+fdisk -l
+
+# Check for partition changes
+partprobe
 
 # Create partition
 fdisk <name_of_disk>  # e.g. /dev/sdb
@@ -574,12 +583,22 @@ pvremove <partition_name>
 
 # List physical volumes
 pvs
+pvdisplay
 ```
 - Assign physical volumes to volume groups
 ```
 # Udemy lecture 190
 # Create volume group
 vgcreate <volume_group_name> <physical_volume_name>
+
+# extend volume group
+vgextend <volume_group> <partition_to_add> # extending with an LVM partition
+
+# reduce volume group
+vgreduce <volume_group> <partition_to_remove>
+
+# remove volume group
+vgremove <volume_group>
 
 # Display volume group info
 vgdisplay <volume_group_name>
@@ -591,6 +610,14 @@ lvcreate -n <logical_volume_name> --size <size> <volume_group>
 
 # Display logical volumes
 lvs
+lvdisplay
+
+# extend logical volume
+## check fdisk and physical volumes have room
+lvextend -L+1G /dev/vg1/lv1  # extends LV1 by 1G
+
+# reduce logical volume
+lvresize -L-1G /dev/vg1/lv1
 
 # Delete logical volume
 lvremove <volume_group>/<logical_volume>
@@ -604,6 +631,9 @@ mount <logical_voume> <mount_path>
 ```
 - Configure systems to mount file systems at boot by universally unique ID (UUID) or label
 ```
+# create file system
+mkfs.ext4 /dev/vg1/lv1
+
 # Get the UUID
 blkid
 
@@ -648,20 +678,23 @@ swapoff
 # Look at memory
 free -m
 
-# Create swap placeholder
-dd if=/dev/zero of=/newswap bs=1M count=1024
-
-# Update file permissions
-chmod 600 <file>
+# Create logical volume for swap
+lvcreate -n swap1 -L 2G <volume_group>
 
 # Make swap
-mkswap <name_of_swap>
+mkswap <name_of_swap> # e.g. /dev/vg1/swap1
 
 # Enable swap
-swapon <name_of_swap>
+swapon <name_of_swap> # e.g. /dev/vg1/swap1
+
+# check if swap is enabled
+swapon -s
 
 # Add to fstab
 <swap_path>    swap    swap    defaults 0    0
+
+# Mount
+swapon -a
 ```
 
 ## Create and configure file systems
