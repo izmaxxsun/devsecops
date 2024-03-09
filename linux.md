@@ -732,6 +732,9 @@ mount -t nfs -o options host:/remote/export /local/directory
 ## Install package
 yum install nfs-utils autofs
 
+## Make sure User IDs the same on client and server
+usermod -i <desired_user_id> <user>
+
 ## Create mount point
 sudo mkdir /nfs-mount
 
