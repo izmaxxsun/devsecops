@@ -776,7 +776,13 @@ chmod g+s <file_or_dir>
 ```
 - Diagnose and correct file permission problems
 ```
-TBD
+# Check owner and group permissions, and change accordinagly
+chmod <permissions> <file>
+
+# Check ACL permissions
+getfacl <file>
+
+setfacl -m u:<user>:rwx  # sets permission for specific user
 ```
 
 ## Deploy, configure, and maintain systems
