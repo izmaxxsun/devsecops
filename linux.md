@@ -886,6 +886,12 @@ yum-config-manager --add-repo file:///root/local_repo
 
 vi /etc/yum.repos.d
 
+# Working with module streams
+dnf module list
+dnf module install php:7.3/minimal # example of installing specific version
+dnf module remove <package>
+dnf module reset
+```
 - Modify the system bootloader
 ```
 grub2-editenv list
@@ -893,14 +899,13 @@ grub2-set-default 1 # sets the kernel to 2nd option
 
 # Modify config and then run make
 vi /etc/default/grub
-bur2-mkconfig -o /boot/grub2/grub.cfg
+grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
 
 ## Manage basic networking
 - Configure IPv4 and IPv6 addresses
 ```
 # Udemy lecture 144
-
 # Look at IP info
 ip addr
 
