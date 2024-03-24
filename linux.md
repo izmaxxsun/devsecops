@@ -844,19 +844,48 @@ timedatectl set-ntp true
 ```
 - Install and update software packages from Red Hat Network, a remote repository, or from the local file system
 ```
+# Find a package
+dnf search <package>
+dnf list na* # finds any package starting with na
+
+# List repositories on the system
+dnf repolist all # this shows all including disabled repos
+dnf repoinfo # details on currently used repos
+
+# Info on a package
+dnf info <package
+
 # List packages
-rpm -qa
+dnf list
+
+# Install package
+dnf install <package>
+dnf localinstall <package>
 
 # Remove package
-rpm -e <package>
+dnf remove <package>
+
+# See history
+dnf history list
+
+# Add remote repository
+yum-config-manager --add-repo https://<remote_repository>
 
 # Local repo
-# add file to /etc/yum.repos.d
-# for each entry add: name, baseurl, gpgcheck (0), enabled (1)
+## Install util to create repo
+dnf install createrepo
 
-# Yum package manager
-yum install <package_name>
-```
+## Create directory
+mkdir /root/local_repo
+
+## Create repo
+createrepo --database /root/local_repo
+
+## Add to yum
+yum-config-manager --add-repo file:///root/local_repo
+
+vi /etc/yum.repos.d
+
 - Modify the system bootloader
 ```
 grub2-editenv list
