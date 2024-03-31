@@ -1035,8 +1035,15 @@ cat /etc/passwd
 
 # Change group for a user
 usermod -a -G <group> <user>
+
+# remove user from group
+gpasswd -d user1 <group>
+
 ```
 - Configure superuser access
+```
+
+```
 
 ## Manage security
 - Configure firewall settings using firewall-cmd/firewalld
