@@ -931,18 +931,82 @@ cat /etc/resolv.conf
 vi /etc/hosts
 ```
 - Configure network services to start automatically at boot
+```
+# network service
+systemctl enable httpd  # create symlink to start on boot
+systemctl disable httpd
+
+# starting network connection automatically
+nmcli connection modify eth0 connection.autoconnect yes
+```
 - Restrict network access using firewall-cmd/firewall
+```
+# list zones
+firewall-cmd --get-zones
+firewall-cmd --zone work --list-all
+
+# create zone
+firewall-cmd --new-zone servers --permanent
+
+# add service
+firewall-cmd --zone servers --add-service=ssh --permanent
+firewall-cmd --zone servers --list-all
+
+# add interface to zone
+firewall-cmd --change-interface=enp0s8 --zone=servers --permanent
+
+# set default zone
+firewall-cmd --set-default-zone=servers
+
+# available services
+firewall-cmd --get-services
+
+# reload
+firewall-cmd --reload
+```
 
 ## Manage users and groups
 - Create, delete, and modify local user accounts
 ```
+# Create local user
+useradd user1
+useradd -u 1010 -g 1005 user1 # specify uid and gid
+
 # View user accounts
-cat /etc/passwd
+cat /etc/group | grep user1
+cat /etc/passwd | grep user1
+
+# add group
+groupadd IT
+cat /etc/group | grep IT
+
+# add user to group
+useradd -G IT user1
+
+# delete user
+userdel -r user1 # removes home dir as well
+
+# modify user
+usermod -l user1 user2 # rename user
+
+# change password
+passwd user1
 ```
+
 - Change passwords and adjust password aging for local user accounts
 ```
+# change local passwd
+passwd
+
+# change for user
+passwd <username>
+
 # Shows password policy for user
 chage -l <username>
+
+# Modify password policy
+chage -M 30 user1 # expire in 30 days
+chage -E 2025-01-01 user1
 
 # Shadow file shows password policy values maded thru chage command
 cat /etc/shadow
@@ -958,6 +1022,12 @@ cat /etc/pam.d/system-auth
 # Create group
 groupadd <new_group>
 cat /etc/group
+
+# delete group
+groupdel <group>
+
+# update group name
+groupmod -n <new_name> <existing_name>
 
 # Add user and assign group
 useradd <username> -G <new_group>
@@ -1110,18 +1180,3 @@ podman ps -a # shows stopped containers
 - Attach persistent storage to a container
 
 As with all Red Hat performance-based exams, configurations must persist after reboot without intervention.
-
-## Other
-- OpenLDAP installation
-```
-# OpenLDAP service is slapd
-systemctl start slapd
-systemctl enable slapd
-/etc/openldap/slapd.d #config file
-```
-- Networking
-```
-# Maps journey of packet from source to destination
-traceroute
-```
-
