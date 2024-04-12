@@ -1042,12 +1042,24 @@ gpasswd -d user1 <group>
 ```
 - Configure superuser access
 ```
+# sudoers config file
+visudo /etc/sudoers
 
+# root user can run on any machine as any user, and run any command
+root    ALL=(ALL)    ALL
+
+# user2 can run on any host as root and run ls or df command
+user2 ALL=(root)    /bin/ls, /bin/df
 ```
 
 ## Manage security
 - Configure firewall settings using firewall-cmd/firewalld
 ```
+# IP forwarding
+vi /etc/sysctl.conf
+net.ipv4.ip_forward=1
+
+
 # GUI version
 firewall-config
 cat /etc/firewalld/firewalld.conf
