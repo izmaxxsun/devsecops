@@ -1118,16 +1118,37 @@ Port 22 <-- change this port number
 sestatus
 
 # To disable SELinux, change to SELINUX=disabled
-vi /etc/sysconfig/sysconfig
+vi /etc/selinux/config
+
+# view messages
+vi /var/log/messages
 ```
 - List and identify SELinux file and process context
 ```
+# List
+ls -Z
+
+# view your permissions
+id -Z
+
 # View file info
 stat <filename>
+
+# view process
+ps -auxZ
 ```
 - Restore default file contexts
 ```
+# list context
 ls -Z
+
+# change context
+chcon unconfined_u:object_r:tmpt_t:s0 kafka.txt
+
+# restore file
+restorecon <file>
+
+# restore directory
 restorecon -R /path
 ```
 - Manage SELinux port labels
@@ -1138,9 +1159,17 @@ semanage port -d -t gopher_port_t -p tcp 71
 ```
 - Use boolean settings to modify system SELinux settings
 ```
-sudo semanage boolean --list | head
+# get booleans
+getsebool -a | grep virtualbox
+
+# get boolean details
+sudo semanage boolean --list | grep virtualbox
+
+# set boolean
+setsebool -P use_virtualbox on
 sudo semanage boolean --modify --on http_allow_homedirs
 ```
+
 - Diagnose and address routine SELinux policy violations
 ```
 dnf install setroubleshoot-server
