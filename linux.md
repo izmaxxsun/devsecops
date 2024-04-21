@@ -1192,8 +1192,19 @@ podman pull <image_full_name>
 ```
 
 - Inspect container images
+```
+podman inspect docker.io/library/httpd
+
+# with skopeo can inspect without pulling image
+dnf install skopeo
+skopeo inspect docker://registry.fedoraproject.org/fedora:latest
+```
+  
 - Perform container management using commands such as podman and skopeo
 ```
+# run container in detached mode with specific port
+podman run -dt -p 8080:80/tcp <image>
+
 podman logs <container_name_or_id>
 
 # look at processes in pod
@@ -1204,7 +1215,15 @@ podman rm <container_name_or_id>
 ```
 - Build a container from a Containerfile
 ```
+# example Containerfile
+FROM registry.access.redhat.com/ubi8/ubi-init
+RUN yum -y install httpd; yum clean all; systemctl enable httpd;
+RUN echo "Successful web server test" > /var/www/html/index.html
+RUN mkdir /etc/systemd/system/httpd.service.d/; echo -e "[Service]\nRestart=always" > /etc/systemd/system/httpd.service.d/httpd.conf
+EXPOSE 80
 
+# build
+podman build -t mysysd . # or can point to containerfile
 
 ```
   
@@ -1224,7 +1243,35 @@ podman ps
 podman ps -a # shows stopped containers
 ```
 - Run a service inside a container
+```
+# using image built above
+podman run -d --name=mysysd_run -p 80:80 mysysd
+
+```
+
 - Configure a container to start automatically as a systemd service
+```
+vim /etc/systemd/system/httpd-container.service
+
+# contents of httpd-container.service
+[Unit]
+Description=httpd Container Service
+Wants=syslog.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/podman start -a httpd-server
+ExecStop=/usr/bin/podman stop -t 2 httpd-server
+
+[Install]
+WantedBy=multi-user.target
+```
+
 - Attach persistent storage to a container
+```
+mkdir -p /home/user/containers/disk1
+
+podman run --privileged -it -v /home/user/containers/disk1:/mnt httpd /bin/bash
+```
 
 As with all Red Hat performance-based exams, configurations must persist after reboot without intervention.
